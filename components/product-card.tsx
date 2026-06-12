@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useQuote } from "@/lib/quote-context"
 import { toast } from "sonner"
+import { assetPath } from "@/lib/asset-path"
 import type { Product } from "@/lib/data"
 
 export function ProductCard({ product }: { product: Product }) {
@@ -21,7 +22,7 @@ export function ProductCard({ product }: { product: Product }) {
         className="relative block aspect-[4/3] overflow-hidden bg-secondary"
       >
         <Image
-          src={product.image || "/placeholder.svg"}
+          src={assetPath(product.image || "/placeholder.svg")}
           alt={product.name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"

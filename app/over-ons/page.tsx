@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { ArrowRight, Heart, ShieldCheck, Sparkles, Handshake } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { assetPath } from "@/lib/asset-path"
 
 export const metadata: Metadata = {
   title: "Over ons",
@@ -72,7 +73,7 @@ export default function OverOnsPage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
             <Image
-              src="/about.png"
+              src={assetPath("/about.png")}
               alt="Het team van Sonilux bouwt een evenement op"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

@@ -3,13 +3,14 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { QuoteCtaButton } from "@/components/quote-cta-button"
+import { assetPath } from "@/lib/asset-path"
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/hero.png"
+          src={assetPath("/hero.png")}
           alt="Sfeervolle eventopstelling met oplichtende LED-meubels"
           fill
           priority

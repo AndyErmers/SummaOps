@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { ProductActions } from "@/components/product-actions"
 import { ProductCard } from "@/components/product-card"
 import { getProduct, getCategory, products } from "@/lib/data"
+import { assetPath } from "@/lib/asset-path"
 
 type Params = { params: Promise<{ slug: string }> }
 
@@ -48,7 +49,7 @@ export default async function ProductDetailPage({ params }: Params) {
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-secondary">
           <Image
-            src={product.image || "/placeholder.svg"}
+            src={assetPath(product.image || "/placeholder.svg")}
             alt={product.name}
             fill
             priority

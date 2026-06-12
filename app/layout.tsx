@@ -6,6 +6,7 @@ import { QuoteProvider } from "@/lib/quote-context"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Toaster } from "@/components/ui/sonner"
+import { assetPath } from "@/lib/asset-path"
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
 const geistMono = Geist_Mono({
@@ -33,8 +34,8 @@ export const metadata: Metadata = {
   ],
   generator: "v0.app",
   icons: {
-    icon: "/sonilux-logo.png",
-    apple: "/sonilux-logo.png",
+    icon: assetPath("/sonilux-logo.png"),
+    apple: assetPath("/sonilux-logo.png"),
   },
   openGraph: {
     title: "Sonilux | Verhuur van LED- en eventmaterialen in Limburg",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
       "Limburgs familiebedrijf voor de verhuur van LED- en eventmaterialen. Vraag snel een offerte aan.",
     locale: "nl_NL",
     type: "website",
-    images: [{ url: "/sonilux-logo.png", alt: "Sonilux Verhuur" }],
+    images: [{ url: assetPath("/sonilux-logo.png"), alt: "Sonilux Verhuur" }],
   },
 }
 
