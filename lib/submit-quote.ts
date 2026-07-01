@@ -1,3 +1,5 @@
+import { supabase } from "@/lib/supabase"
+
 export type QuoteRequest = {
   name: string
   email: string
@@ -13,23 +15,28 @@ export type QuoteResult = {
   message: string
 }
 
-/** Client-side placeholder voor offerte-aanvragen (o.a. GitHub Pages). */
 export async function submitQuote(data: QuoteRequest): Promise<QuoteResult> {
   if (!data.name || !data.email) {
     return { success: false, message: "Naam en e-mailadres zijn verplicht." }
   }
 
-  console.log("[Sonilux] Nieuwe offerte-aanvraag ontvangen:", {
+  const { error } = await supabase.from("quote_requests").insert({
     name: data.name,
     email: data.email,
-    phone: data.phone,
-    date: data.date,
-    guests: data.guests,
+    phone: data.phone || null,
+    event_date: data.date || null,
+    guests: data.guests ? Number(data.guests) : null,
+    notes: data.notes || null,
     products: data.products,
-    notes: data.notes,
   })
 
-  await new Promise((resolve) => setTimeout(resolve, 600))
+  if (error) {
+    console.error("[Sonilux] Offerte-aanvraag mislukt:", error)
+    return {
+      success: false,
+      message: "Er ging iets mis bij het versturen. Probeer het opnieuw.",
+    }
+  }
 
   return {
     success: true,

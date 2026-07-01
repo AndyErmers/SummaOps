@@ -12,6 +12,7 @@ import {
   FieldError,
 } from "@/components/ui/field"
 import { toast } from "sonner"
+import { supabase } from "@/lib/supabase"
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()
@@ -34,10 +35,22 @@ export function ContactForm() {
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
+    const phone = String(formData.get("phone") ?? "").trim()
+
     startTransition(async () => {
-      // Placeholder: later koppelen aan een e-mailprovider of database.
-      console.log("[v0] Contactbericht ontvangen:", { name, email, message })
-      await new Promise((r) => setTimeout(r, 500))
+      const { error } = await supabase.from("contacts").insert({
+        name,
+        email,
+        phone: phone || null,
+        message,
+      })
+
+      if (error) {
+        console.error("[Sonilux] Contactbericht mislukt:", error)
+        toast.error("Er ging iets mis bij het versturen. Probeer het opnieuw.")
+        return
+      }
+
       toast.success("Bedankt! We nemen zo snel mogelijk contact met je op.")
       form.reset()
     })

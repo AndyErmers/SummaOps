@@ -32,6 +32,8 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           GITHUB_PAGES_BASE_PATH: ${{ github.event.repository.name }}
+          NEXT_PUBLIC_SUPABASE_URL: https://fbcwvwukdeqowtcuzrgn.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiY3d2d3VrZGVxb3d0Y3V6cmduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5MTgwNzAsImV4cCI6MjA5ODQ5NDA3MH0.wKSA-r0GNKGgC4Wa69ThD05SH7Sy4Hizt0lY_SlpZ1M
 
       - run: touch out/.nojekyll
 
