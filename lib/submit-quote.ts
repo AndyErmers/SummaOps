@@ -20,14 +20,14 @@ export async function submitQuote(data: QuoteRequest): Promise<QuoteResult> {
     return { success: false, message: "Naam en e-mailadres zijn verplicht." }
   }
 
-  const { error } = await supabase.from("quote_requests").insert({
-    name: data.name,
-    email: data.email,
-    phone: data.phone || null,
-    event_date: data.date || null,
-    guests: data.guests ? Number(data.guests) : null,
-    notes: data.notes || null,
-    products: data.products,
+  const { error } = await supabase.rpc("submit_quote_request", {
+    p_name: data.name,
+    p_email: data.email,
+    p_phone: data.phone || null,
+    p_event_date: data.date || null,
+    p_guests: data.guests ? Number(data.guests) : null,
+    p_notes: data.notes || null,
+    p_items: data.products,
   })
 
   if (error) {

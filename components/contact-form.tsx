@@ -38,11 +38,11 @@ export function ContactForm() {
     const phone = String(formData.get("phone") ?? "").trim()
 
     startTransition(async () => {
-      const { error } = await supabase.from("contacts").insert({
-        name,
-        email,
-        phone: phone || null,
-        message,
+      const { error } = await supabase.rpc("submit_contact", {
+        p_name: name,
+        p_email: email,
+        p_phone: phone || null,
+        p_message: message,
       })
 
       if (error) {
