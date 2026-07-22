@@ -14,3 +14,7 @@ node_modules
 .next/
 out/
 .DS_Store
+
+# Claude Code local state (not shared)
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
